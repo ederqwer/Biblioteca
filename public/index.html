@@ -1,24 +1,56 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="myApp">
 <head>
 	<meta charset="utf-8">
 	<title>Biblioteca</title>
-	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container" ng-controller="AppCtrl">
 		<h1>Libros</h1>
-		<table class="table">
+		<h3>Buscar</h3>
+		<input class="form-control" ng-model="word" ng-change="search()">
+		<p></p>
+		<table class="table table-hover & table-bordered">
 			<thead>
 				<tr>
-					<th>Titulo</th>
+					<th>Adquisicion</th>
 					<th>Autor</th>
+					<th>Titulo</th>
+					<th>A. Topografica</th>
+					<th>Volumenes</th>
 					<th>Ejemplares</th>
+					<th>Ovservaciones</th>
 				</tr>
 			</thead>
+			<tbody>
+			<tr>
+				<td><input class="form-control" ng-model="libro.ADQUISICION"></td>
+				<td><input class="form-control" ng-model="libro.AUTOR"></td>
+				<td><input class="form-control" ng-model="libro.TITULO"></td>
+				<td><input class="form-control" ng-model="libro.ATOPOGRAFICA"></td>
+				<td><input class="form-control" ng-model="libro.VOLUMENES"></td>
+				<td><input class="form-control" ng-model="libro.EJEMPLARES"></td>
+				<td><input class="form-control" ng-model="libro.OBSERVACIONES"></td>
+				<td><button class="btn btn-primary" ng-click="addBook()">Agregar Libro</button></td>
+				<td><button class="btn btn-info" ng-click="update()">Actualizar</button></td>
+			</tr>
+				<tr ng-repeat="libro in libros">
+					<td>{{libro.ADQUISICION}}</td>
+					<td>{{libro.AUTOR}}</td>
+					<td>{{libro.TITULO}}</td>
+					<td>{{libro.ATOPOGRAFICA}}</td>
+					<td>{{libro.VOLUMENES}}</td>
+					<td>{{libro.EJEMPLARES}}</td>
+					<td>{{libro.OBSERVACIONES}}</td>
+					<td><button class="btn btn-danger" ng-click="remove(libro._id)">Eliminar</button></td>
+					<td><button class="btn btn-warning" ng-click="edit(libro._id)">Editar</button></td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
-	<script src="jquery.min.js"></script>
-	<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script src="angular.min.js"></script>
+	<script src="controllers/controller.js"></script>
 </body>
 </html>

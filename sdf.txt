@@ -1,0 +1,4 @@
+db.libros.find(function(err, docs){
+		console.log(docs);
+		res.json(docs);
+	});
